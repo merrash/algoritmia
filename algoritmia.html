@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Algoritmia</h1> 
+</body>
+
+<div style="display: flex; width: 100%;">
+    <div style="width: 40%; border: 1px solid lightgray;">
+        <h3>Números pares e impares</h3>
+        <label for="">Introduzca un numero entero y pulsa intro</label><br><br>
+        <input type="text" id="numero" value="" placeholder="0"><br><br>
+        <div style="min-height: 200px; width: 100%; border: 1px solid blue;" class="screen"></div>
+    </div>
+    <div style="width: 40%; border: 1px solid lightgray;">
+        <h3>Personas</h3>
+        
+        <div style="min-height: 200px; width: 100%; border: 1px solid blue;" class="screen1"></div>
+    </div>
+    <div style="width: 40%; border: 1px solid lightgray;">
+        <h3>Sueldo trabajadores</h3>
+        <label for="">Introduzca horas trabajadas</label><br>
+        <input type="text" id="horas" value="" placeholder="0"><br><br>
+        <label for="">Introduzca tarifa</label><br>
+        <input type="text" id="tarifa" value="" placeholder="0"><br><br>
+        <button id="calcular">calcular</button>
+
+        <div style="min-height: 200px; width: 100%; border: 1px solid blue;" class="screen2"></div>
+    </div>
+</div>
+<script
+  src="https://code.jquery.com/jquery-3.6.4.js"
+  integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+  crossorigin="anonymous"></script>
+<script>
+
+
+//PAR E IMPAR
+$('#numero').change(function(){
+    var numero = parseInt($(this).val());
+
+    // si es numero
+    if(!Number.isNaN(numero)){
+        if(numero % 2 == 0){
+            // si son pares
+            while(numero >= 0 ){
+                if (numero % 2 === 0) {
+                    $('.screen').append(numero + '<br>');
+                }
+                numero--;
+            }
+        }
+        else{
+            // si son impares
+            while(numero >= 1 ){
+                if (numero % 2 === 1) {
+                    $('.screen').append(numero + '<br>');
+                }
+                numero--;
+            }
+        }
+    }
+    else{
+        $('.screen').html('No es un numero');
+    }
+})
+
+
+//LISTA PERSONAS
+var personas = [ 
+    {"sexo" : "mujer", "edad": "45"},
+    {"sexo" : "hombre", "edad": "15"},
+    {"sexo" : "mujer", "edad": "54"},
+    {"sexo" : "hombre", "edad": "5"},
+    {"sexo" : "mujer", "edad": "3"},
+    {"sexo" : "hombre", "edad": "22"},
+    {"sexo" : "mujer", "edad": "20"},
+    {"sexo" : "hombre", "edad": "30"},
+    {"sexo" : "mujer", "edad": "18"},
+    {"sexo" : "hombre", "edad": "32"},
+    {"sexo" : "mujer", "edad": "28"},
+    {"sexo" : "hombre", "edad": "12"},
+    {"sexo" : "mujer", "edad": "25"},
+    {"sexo" : "hombre", "edad": "44"},
+    {"sexo" : "mujer", "edad": "29"},
+    {"sexo" : "hombre", "edad": "8"},
+    {"sexo" : "mujer", "edad": "38"},
+    {"sexo" : "hombre", "edad": "23"},
+    {"sexo" : "mujer", "edad": "6"},
+    {"sexo" : "hombre", "edad": "9"},
+    {"sexo" : "mujer", "edad": "34"},
+    {"sexo" : "hombre", "edad": "37"},
+    {"sexo" : "mujer", "edad": "10"},
+    {"sexo" : "hombre", "edad": "24"},
+    {"sexo" : "mujer", "edad": "40"},
+    {"sexo" : "hombre", "edad": "41"},
+    {"sexo" : "mujer", "edad": "43"},
+    {"sexo" : "hombre", "edad": "39"},
+    {"sexo" : "mujer", "edad": "21"},
+    {"sexo" : "hombre", "edad": "48"},
+    {"sexo" : "mujer", "edad": "45"},
+    {"sexo" : "hombre", "edad": "15"},
+    {"sexo" : "mujer", "edad": "54"},
+    {"sexo" : "hombre", "edad": "5"},
+    {"sexo" : "mujer", "edad": "3"},
+    {"sexo" : "hombre", "edad": "22"},
+    {"sexo" : "mujer", "edad": "20"},
+    {"sexo" : "hombre", "edad": "30"},
+    {"sexo" : "mujer", "edad": "18"},
+    {"sexo" : "hombre", "edad": "32"},
+    {"sexo" : "mujer", "edad": "28"},
+    {"sexo" : "hombre", "edad": "12"},
+    {"sexo" : "mujer", "edad": "25"},
+    {"sexo" : "hombre", "edad": "44"},
+    {"sexo" : "mujer", "edad": "29"},
+    {"sexo" : "hombre", "edad": "8"},
+    {"sexo" : "mujer", "edad": "38"},
+    {"sexo" : "hombre", "edad": "23"},
+    {"sexo" : "mujer", "edad": "6"},
+    {"sexo" : "hombre", "edad": "24"}
+    
+]
+
+numMay = 0;
+numMen = 0;
+numHomMay = 0;
+numMujMen = 0;
+porMay = 0;
+porMuj = 0;
+
+personas.forEach(function(element){
+    if(element['edad'] >= 18 ){
+        console.log(element['sexo']+' : '+element['edad']);
+        numMay++;
+    }
+    if(element['edad'] < 18 ){
+        console.log(element['sexo']+' : '+element['edad']);
+        numMen++;
+    }
+    if(element['edad'] > 18 && element['sexo'] == 'hombre' ){
+        console.log(element['sexo']+' : '+element['edad']);
+        numHomMay++;
+    }
+    if(element['edad'] < 18 && element['sexo'] == 'mujer' ){
+        console.log(element['sexo']+' : '+element['edad']);
+        numMujMen++;
+    }  
+    if(element['sexo'] == 'mujer' ){
+        console.log(element['sexo']+' : '+element['edad']);
+        porMuj++;
+    }  
+});
+
+$('.screen1').append('Numero de mayores de edad: '+numMay +'<br>');
+$('.screen1').append('Numero de menores de edad: '+numMen +'<br>');
+$('.screen1').append('Numero de hombres mayores de edad: '+numHomMay +'<br>');
+$('.screen1').append('Numero de mujeres menores de edad: '+numMujMen +'<br>');
+$('.screen1').append('Porcentaje mayores de edad: '+(numMay*100)/personas.length +'<br>');
+$('.screen1').append('Porcentaje mayores de edad: '+(porMuj*100)/personas.length +'<br>');
+
+
+
+
+
+// SUELDO TRABAJADORES
+$('#calcular').click(function(){
+    var horastrabajadas = $('#horas').val();
+    var horasextra = horastrabajadas - 40;
+    var tarifa = $('#tarifa').val();
+    var tarifaextra = Number(tarifa) + Number(tarifa)*50/100;
+    var sueldo40 = tarifa * 40
+    var sueldo = 0;
+
+    if(horastrabajadas <= 40){
+        sueldo = tarifa * horastrabajadas;
+    }
+    else{
+        sueldo =  sueldo40 + (tarifaextra * horasextra)
+    }
+    
+    $('.screen2').html('sueldo: '+sueldo);
+
+})
+   
+
+</script>
+
+
+
+
+</html>
